@@ -1,0 +1,6 @@
+# Optional: use these settings if you host the frontend on Netlify instead of Render.
+# Also set environment variable PWMS_API = https://<your-backend>.onrender.com/api in Netlify.
+[build]
+  base = "frontend"
+  command = "npm install && npm run build"
+  publish = "public"
