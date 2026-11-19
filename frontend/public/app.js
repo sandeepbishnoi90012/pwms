@@ -64,7 +64,7 @@ function FormModal({ title, fields, initial, onSubmit, onClose, submitLabel }) {
   const [busy, setBusy] = useState(false);
   const submit = async e => {
     e.preventDefault(); setErr('');
-    for (const f of fields) if (f.required && String(v[f.name] ?? '').trim() === '') return setErr(`${f.label} is required`);
+    for (const f of fields) if ((!f.showIf || f.showIf(v)) && f.required && String(v[f.name] ?? '').trim() === '') return setErr(`${f.label} is required`);
     setBusy(true);
     try { await onSubmit(v); onClose(true); } catch (x) { setErr(x.message); setBusy(false); }
   };
